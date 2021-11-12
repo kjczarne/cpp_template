@@ -1,0 +1,40 @@
+{
+    "configurations": [
+        {
+            "name": "Debug Tests (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/${input:targetTestBinary}.exe",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Tests (Linux/macOS)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/${input:targetTestBinary}",
+            "stopAtEntry": true,
+            "linux": {
+                "MIMode": "gdb",
+                "miDebuggerPath": "gdb"
+            },
+            "osx": {
+                "MIMode": "lldb"
+            },
+            "console": "integratedTerminal"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "targetTestBinary",
+            "type": "pickString",
+            "description": "Test binary name to debug",
+            "options": [
+                "test1"
+            ]
+        }
+    ]
+}

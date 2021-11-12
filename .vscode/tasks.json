@@ -1,0 +1,128 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "MSBuild Compile (Windows)",
+            "command": "msbuild",
+            "args": [
+                "${workspaceFolder}\\build\\project.sln",
+                "/property:Configuration=${input:buildType}"
+            ],
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Ninja Compile (Windows/Linux/macOS)",
+            "windows": {
+                "command": "../scripts/build_ninja.bat",
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe"
+                    },
+                    "cwd": "${workspaceFolder}/build"
+                },
+                "problemMatcher": ["$msCompile"]
+            },
+            "linux": {
+                "command": "ninja",
+                "options": {
+                    "cwd": "${workspaceFolder}/build"
+                },
+                "problemMatcher": ["$gcc"]
+            },
+            "osx": {
+                "command": "ninja",
+                "options": {
+                    "cwd": "${workspaceFolder}/build"
+                },
+                "problemMatcher": ["$gcc"]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Make Compile (Linux)",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "Remove build directory (Windows)",
+            "command": "rm",
+            "type": "shell",
+            "args": [
+                "./build",
+                "-Recurse",
+                "-Force"
+            ],
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe"
+                },
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Remove build directory (Linux/macOS)",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "./build"
+            ],
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Remove Conan cached packages (Windows)",
+            "command": "rm",
+            "args": [
+                "~/.conan/data",
+                "-Recurse",
+                "-Force"
+            ],
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Remove Conan cached packages (Linux/macOS)",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "~/.conan/data"
+            ],
+            "type": "shell",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "buildType",
+            "type": "pickString",
+            "description": "Build Type",
+            "options": [
+                "RelWithDebInfo",
+                "Release",
+                "Debug"
+            ],
+            "default": "RelWithDebInfo"
+        }
+    ]
+}
