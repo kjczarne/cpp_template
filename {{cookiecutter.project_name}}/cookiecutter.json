@@ -1,3 +1,14 @@
 {
-    "project_name": "TutorialApp"
+    "project_name": "TutorialApp",
+    "cookiecutter.cpp_standard": [
+        20,
+        17,
+        23
+    ],
+    "cookiecutter.cmake_min_version_required": [
+        "3.23",
+        "3.22",
+        "3.21",
+        "3.20"
+    ]
 }

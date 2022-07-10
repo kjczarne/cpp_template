@@ -9,7 +9,7 @@
             ],
             "windowsSdkVersion": "10.0.16299.0",
             "compilerPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\cl.exe",
-            "cStandard": "c17",
+            "cppStandard": "{{cookiecutter.cpp_standard}}",
             "intelliSenseMode": "windows-msvc-x64",
             "configurationProvider": "ms-vscode.cmake-tools",
             "compileCommands": "${workspaceFolder}/build/compile_commands.json"
@@ -22,7 +22,7 @@
                 "_UNICODE"
             ],
             "compilerPath": "g++",
-            "cStandard": "c17",
+            "cppStandard": "{{cookiecutter.cpp_standard}}",
             "intelliSenseMode": "linux-gcc-x64",
             "configurationProvider": "ms-vscode.cmake-tools",
             "compileCommands": "${workspaceFolder}/build/compile_commands.json"

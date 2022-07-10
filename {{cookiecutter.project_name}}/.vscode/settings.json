@@ -121,7 +121,7 @@
     "cmake.configureSettings": {
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
         "CMAKE_BUILD_UNIT_TESTS": "ON",
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+        "CMAKE_BUILD_TYPE": "Debug"
     },
     "cmake.configureOnEdit": false,
     "cmake.configureOnOpen": false,

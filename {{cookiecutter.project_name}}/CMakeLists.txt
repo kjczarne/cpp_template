@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION {{cookiecutter.cmake_min_version_required}})
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD {{cookiecutter.cpp_standard}})
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project({{cookiecutter.project_name}}
-        VERSION "1.0.1"
+        VERSION "0.0.1"
         LANGUAGES CXX)
 
 add_library({{cookiecutter.project_name}}Lib src/something.cpp include/something.h)

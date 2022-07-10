@@ -1,0 +1,35 @@
+alias c := cmake
+alias cr := cmake_release
+alias b := build
+alias t := test
+alias ta := test_all
+
+app_name := if os_family() == "windows" { {{cookiecutter.project_name}}.exe } else { {{cookiecutter.project_name}} }
+test_names := if os_family() == "windows" { `ls *-test.exe` } else { `ls *-test` }
+
+
+# Run CMake configure with unit tests and with the Debug Build Type
+cmake:
+    cmake -S . -B build -DCMAKE_BUILD_UNIT_TESTS=ON -DCMAKE_BUILD_TYPE=Debug
+
+# Run CMake configure without unit tests and with the Release Build Type
+cmake_release:
+    cmake -S . -B build -DCMAKE_BUILD_UNIT_TESTS=OFF -DCMAKE_BUILD_TYPE=Release
+
+# Run CMake Build
+build:
+    cmake --build build
+
+# Run the application
+run:
+    ./build/bin/{{app_name}}
+
+# Run one selected test
+test TEST:
+    ./build/bin/{{TEST}}
+
+# Run all tests
+test_all:
+    for test in test_names; do \
+        ./build/bin/$test; \
+    done
